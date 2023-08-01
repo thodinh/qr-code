@@ -1,27 +1,40 @@
 {
-  "name": "typescript-template",
-  "version": "1.0.7",
-  "description": "A complete Node.js project template using TypeScript and following general best practices.",
+  "name": "@ai.vn/qr",
+  "version": "0.0.2",
+  "description": "QR Code for JS.",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
-    "typescript",
-    "template"
+    "qr-code",
+    "qrcode",
+    "qr",
+    "qr-art",
+    "qr-code-generator"
   ],
   "author": {
-    "name": "Chris Wells",
-    "url": "https://chriswells.io"
+    "name": "TD",
+    "url": "https://innoria.com"
   },
-  "license": "BSD-3-Clause",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chriswells0/node-typescript-template.git"
+    "url": "https://github.com/thodinh/qr-code.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/qr.js",
+  "types": "dist/qr.d.ts",
+  "module": "dist/qr.mjs",
+  "typings": "dist/qr.d.ts",
   "files": [
     "dist/"
   ],
+  "type": "module",
+  "compilerOptions": {
+    "target": "esnext",
+    "esModuleInterop": true
+  },
   "scripts": {
-    "build": "npm run clean && npm run lint && tsc",
+    "build": "pnpm clean && rollup -c",
     "changelog": "conventional-changelog -p angular -u",
     "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "clean": "node -e \"var { rmdirSync, existsSync } = require('fs'), path = require('path'); ['./.nyc_output', './coverage', './dist'].forEach(fPath => {if (existsSync(path.join(__dirname, fPath))) rmdirSync(path.join(__dirname, fPath), { recursive: true })}); process.exit(0);\"",
@@ -33,33 +46,28 @@
     "postversion": "git push && git push --tags",
     "prepare": "npm run build",
     "serve": "nodemon ./src/index.ts",
+    "start": "ts-node --esm src/index.ts",
     "test": "mocha",
     "upgrade": "npx npm-check -u",
     "version": "npm run build && npm run changelog:update"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.5",
-    "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.1",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
-    "chai": "^4.3.7",
-    "conventional-changelog-cli": "^3.0.0",
-    "cz-conventional-changelog": "^3.3.0",
+    "esbuild": "^0.18.17",
     "eslint": "^8.44.0",
-    "mocha": "^10.2.0",
-    "nodemon": "^3.0.1",
-    "nyc": "^15.1.0",
+    "rollup": "^3.27.0",
+    "rollup-plugin-dts": "^5.3.1",
+    "rollup-plugin-esbuild": "^5.0.0",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "dependencies": {
-    "sitka": "^1.1.1"
+    "canvas": "^2.11.2",
+    "nodemon": "^3.0.1",
+    "robust-predicates": "^3.0.2",
+    "seedrandom": "^3.0.5"
   }
 }
