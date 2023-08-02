@@ -3,7 +3,6 @@ const EPSILON = Math.pow(2, -52);
 const EDGE_STACK = new Uint32Array(512);
 
 import { orient2d } from 'robust-predicates';
-// const { orient2d } = robust
 
 export default class Delaunator {
     coords: Float64Array;
